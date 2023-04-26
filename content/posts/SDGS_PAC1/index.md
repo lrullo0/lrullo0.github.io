@@ -1,6 +1,6 @@
 ---
-title: Prova d'Avaluació Continuada 1 – PAC1
-summary: Presentació de la pràctica PAC 1 de SISTEMES DISTRIBUÏTS A GRAN ESCALA
+title: Prova d'Avaluació Continuada 1 – PAC1 - M1.210 Sistemes distribuïts a gran escala
+summary: Presentació de la pràctica PAC 1 de Sistemes distribuïts a gran escala
 colorlinks: true
 date: "2023-04-02"
 geometry:

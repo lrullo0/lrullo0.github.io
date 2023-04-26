@@ -1,6 +1,6 @@
 ---
 date: "2023-04-02"
-title:  PAC1 - Plataformes de distribució de continguts
+title: Prova d'Avaluació Continuada 1 - PAC1 - Plataformes de distribució de continguts
 summary: 
   Resolució de l'exercici proposat per M1.206 Plataformes de distribució de continguts. 30 de Març de 2023
 author:
