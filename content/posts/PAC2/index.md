@@ -1,24 +1,31 @@
 ---
+geometry:
+- margin=0.8in
 title: Prova d'Avaluació Continuada 2 (PEC2)
-summary: Resultat de la pràctica
+summary: Resultat de la pràctica d'avaluació continuada 2 (PEC2) per l'assignatura Plataformes de publicació i distribució. Accessible també a partir de la url https://lrullo0.github.io/posts/pac2
 author: 
  - Luca Rullo
 colorlinks: true
 fontsize: 12pt
 toc: true
 toc-depth: 1
-geometry:
-- margin=1in
 categories:
 - Plataformes de publicació i distribució
 date: "2023-04-26"
+
 ---
 
 
-# Exercici 1: Familiarització amb l'aplicació Avidemux. Contingut estàtic
+# Introducció: Format de presentació de la pràctica.
+
+S'ofereix aquest format en PDF per a la lectura dels resultats de la pràctica i la opció web publicada a GitHub on també es poden trobar els vídeos.
+
+* Article de la web vinculat a la pràctica renderitzada: [https://lrullo0.github.io/posts/pac2](https://lrullo0.github.io/posts/pac2)
+* Accés al codi font amb els materials de vídeo: [https://github.com/lrullo0/lrullo0.github.io](https://github.com/lrullo0/lrullo0.github.io/tree/main/content/posts/PAC2)
+
+# Familiarització amb l'aplicació Avidemux. Contingut estàtic
 
 [Descarrega Video](./video/asset-01.mp4)
-
 <center>
 <video src="./video/asset-01.mp4" controls height="480"></video>
 </center>
@@ -65,7 +72,7 @@ H264 és una codificació amb pèrdues.
 
 Amb un format de 720x1280px i 29,611fps i una duració de 13 segons en H264 té una mida de 3.7MB
 
-La estimació de mida sense compresió (només video) seria:
+La estimació de mida sense compressió (només vídeo) seria:
 
 3 bytes/pixel * (720 x 1280 px / frame ) * 29.611 fps * 13 sec = 1064290406.4000001 bytes = 1014.98 MB
 
@@ -79,32 +86,32 @@ El contenidor utilitzat és un MP4, un contenidor utilitzat per MPEG i compatibl
 
 ## 1.5 De quin tipus és el primer fotograma? I el segon?
 
-El primer fotograma es I-FRM, és a dir, un keyframe que está comprimit espacialment, i el segon P-FRM, una imatge generada per extrapolació de les anteriors mitjançant una estimació de moviment.
+El primer fotograma es I-FRM, és a dir, un keyframe que està comprimit espacialment, i el segon P-FRM, una imatge generada per extrapolació de les anteriors mitjançant una estimació de moviment.
 
 ## 1.6 Quants quadres d'aquest tipus hi ha al clip sencer? Quina relació hi ha entre el contingut de la imatge i l'existència de quadres tipus I?
 
 Per cada segon tenim 1 frame I-FRM i 28 P-FRM, per tant, si el nostre clic es de 13 segons, tenim 13 frames I-FRM I 364 frame P-FRM. 
 
-A més quantitat de quadres tipus I, més mida tindrá el nostre fitxer ja que tenen una compressió més debil. És a dir, si la imatge és una imatge fitxa, podriem tenim pocs quadres I ja que no hi ha massa canvi a la imatge, però en imatges en moviment, necesitem més frames I per poder afavorir una bona sensació de qualitat de la imatge. Per tant, si el contingut de la nostra imatge es en moviment, hauriem de tenir una configuració de frames I més gran que en estátic.
+A més quantitat de quadres tipus I, més mida tindrà el nostre fitxer ja que tenen una compressió més dèbil. És a dir, si la imatge és una imatge fitxa, podríem tenim pocs quadres I ja que no hi ha massa canvi a la imatge, però en imatges en moviment, necessitem més frames I per poder afavorir una bona sensació de qualitat de la imatge. Per tant, si el contingut de la nostra imatge és en moviment, hauríem de tenir una configuració de frames I més gran que en estàtic.
 
-## Tasca 1.7: En resum, quin tipus d'estructures GOP posseeix aquest clip? I per què?
+## 1.7 En resum, quin tipus d'estructures GOP posseeix aquest clip? I per què?
 
 En el nostre cas tenim:
 
-1 frame I - 28 frames P per tant, el nostre 
+1 frame I - 28 frames P per tant:
 
 El valor N, la distancia entre frames I es de 30
 I el valor M, la distancia entre un frame I i el següent I o P es de 1
 
 Per tant, tenim un GOP de 30 amb N=30 M=1.
 
-## Tasca 1.8: Cal tenir en compte alguna cosa sobre GOPs quan s'edita un vídeo? Indaga als fòrums d'Avidemux per trobar informació sobre què fa aquesta aplicació (i qualsevol altra aplicació d'edició) quan talla un clip per assemblar-ho a un altre.
+## 1.8 Cal tenir en compte alguna cosa sobre GOPs quan s'edita un vídeo? Indaga als fòrums d'Avidemux per trobar informació sobre què fa aquesta aplicació (i qualsevol altra aplicació d'edició) quan talla un clip per assemblar-ho a un altre.
 
-Es important entendre, segons les lectures dels forums d'Avidemux [^avidemux], que l'unitat per tallar clips hauria de coincidir amb el I-FRM per treballar en un mode "net" i evitar recompresions o perdue de qualitat en l'exportació del material. Es posible taller al P-FRAME però es considera més adient treballar el tall en els I-FRM.
+Es important entendre, segons les lectures dels fòrums d'Avidemux [^avidemux], que la unitat per tallar clips hauria de coincidir amb el I-FRM per treballar en un mode "net" i evitar recompressions o pèrdues de qualitat en l'exportació del material. És possible tallar el P-FRAME però es considera més adient treballar el tall en els I-FRM per evitar possibles drops. En un workflow de treball d'edició de vídeo no lineal en digital és treballa amb clips proxi, és a dir, clips que son versions en baixa qualitat però amb baixa compressió per poder alliberar la màquina d'edició de sobrecàrregues al comprimir i descomprimir continuament la senyal. Quan es realitza la exportació final del projecte, o el que s'anomena _render_, el software d'edició de vídeo utilitza el fitxers originals als que fa referència el proxi i així ja s'exporta a la qualitat original del projecte.
 
 [^avidemux]: Can't crop/trim from exact point - Avidemux - https://avidemux.org/smif/index.php?topic=17782.0
 
-## 1.9: Quina informació coincideix amb la qual dóna Avidemux? Quina informació addicional dóna? Recorda obviar tot el referent a l’àudio.
+## 1.9 Quina informació coincideix amb la qual dóna Avidemux? Quina informació addicional dóna? Recorda obviar tot el referent a l’àudio.
 
 ~~~
 Video
@@ -153,23 +160,21 @@ Codec configuration box                  : avcC
 
 Tenim molta més informació que en Avidemux i molt més diversa (tipus de formats, diversos tipus de framerate, més dades de color, ...)
 
-Per exemple, si revisemm el códec, Mediainfo el defineix com a AVC1, on Avidemux utilitza l'estandard 4CC[^4cc] per definir-lo com a H264.
+Per exemple, si revisem el còdec, Mediainfo el defineix com a AVC1, on Avidemux utilitza l'estandard 4CC[^4cc] per definir-lo com a H264.
 
-Altres coses, com les que hem revisat anteriorment sobre el GOP, estas detallades en la informació de Mediainfo sobre le nostre clip.
+Altres coses, com les que hem revisat anteriorment sobre el GOP, están detallades a la informació de Mediainfo sobre el nostre clip.
 
 [^4cc]: 4CC - Wikipedia - https://en.wikipedia.org/wiki/FourCC
 
 
-# 2. Contingut dinàmic
+# Contingut dinàmic
 
+[Descarrega Vídeo](./video/asset-02.mp4)
 <center>
 <video src="./video/asset-02.mp4" controls height="480" style="transform:rotate(-90deg)"></video>
 </center>
 
-## 2.1 Mira les característiques d'aquest nou clip i torna a respondre: quina definició en píxels té? Quants quadres/segon posseeix? Quants segons dura? Amb elles, calcula quin seria el pes en bytes d'un fitxer de vídeo que tingués el mateix contingut i durada, però sense comprimir . Recorda: un píxel de color son 3 bytes (24 bits) en un vídeo no comprimit.
-## 2.2: Contrasta aquesta informació amb la donada per MediaInfo
-## 2.3: Tenint com a referència el fitxer de vídeo fictici sense compressió, quin és, llavors, el factor de compressió que ja posseeix asset-02?
-## 2.4: Repeteix les tasques 1.5, 1.6 i 1.7 de l'exercici 1 però ara aplicades a aquest segon clip de vídeo.
+## 2.1 Mira les característiques d'aquest nou clip i torna a respondre: quina definició en píxels té? Quants quadres/segon posseeix? Quants segons dura? Amb elles, calcula quin seria el pes en bytes d'un fitxer de vídeo que tingués el mateix contingut i durada, però sense comprimir.
 
 Informació d'Avidemux:
 
@@ -198,11 +203,14 @@ Extradata:			01 42 00 29 FF E1 00 12 67 42 00 29 8D 8D 40 28 02 DD 35 01 01 01 0
 
 ~~~
 
-El fitxer té una resolució 1280x720 i un FPS de 29,445 codificat utilizant H264 i ocupa 27MB.
+El fitxer té una resolució 1280x720 i un FPS de 29,445 codificat utilitzant H264 i ocupa 27MB.
 
-3 bytes * (1280 * 720) * 29.445 fps * 24 = 1953828864.0 bytes = 1863 MB
+La mida d'un fitxer similar sense comprimir seria:
 
-El seu factor de compressió es de 69:1, si ho comparem amb l'altre, aquest arxiu de video té menys compressió. 
+ 3 bytes * (1280 * 720) * 29.445 fps * 24 = 1953828864.0 bytes = 1863 MB
+
+
+## 2.2 Contrasta aquesta informació amb la donada per MediaInfo
 
 MediaInfo ens ofereix molta més informació, com hem comprovat anteriorment i la información, es molt similar al video anterior. El GOP és el mateix que al material anterior, tenim un primer I-FRM seguit de 29 P-FRM, amb un GOP (M=1 N=30). 
 
@@ -250,12 +258,22 @@ Codec configuration box                  : avcC
 
 ~~~
 
-## 2.5: Comenta les diferències trobades entre asset- 01 i asset-02, i la seva explicació si en tenen.
+## 2.3 Tenint com a referència el fitxer de vídeo fictici sense compressió, quin és, llavors, el factor de compressió que ja posseeix asset-02?
 
-Destaquem en aquest de video la pujada de Bitrate i la variació del framerate, segurament causats per el moviment de càmera i els efectes que causa un canvi tan constant frame a frame. Els fotogrames identificats com a P-FRM han de generar moltes més dades per poder definir els seus canvis de l'anterior I-FRM, pero tant, finalment tenen una mida més gran, el que generar una Bitrate més gran, a més de tenir un factor de compressió menor que en el material anterior.
+El seu factor de compressió es de 69:1, si ho comparem amb l'altre, aquest arxiu de video té menys compressió. 
+
+## 2.4 Repeteix les tasques 1.5, 1.6 i 1.7 de l'exercici 1 però ara aplicades a aquest segon clip de vídeo.
+
+Com a l'anterior, el primer fotograma es un I-FRM i la resta del GOP P-FRM. La resta de dades es com a l'anterior.
+
+Si ho comprovem amb MediaInfo tenim un GOP M=1 N=30
+
+## 2.5 Comenta les diferències trobades entre asset- 01 i asset-02, i la seva explicació si en tenen.
+
+Destaquem en aquest de vídeo la pujada de Bitrate i la variació del framerate, segurament causats per el moviment de càmera i els efectes que causa un canvi tan constant frame a frame. Els fotogrames identificats com a P-FRM han de generar moltes més dades per poder definir els seus canvis de l'anterior I-FRM, per tant, finalment tenim una mida més gran, el que genera un _bitrate_ més gran, a més de tenir un factor de compressió menor que en el material anterior.
 
 
-# 3. Codificació en baixa qualitat
+# Codificació en baixa qualitat
 
 ## 3.1 Quin format de codificació de vídeo accepten els DVD? Si el client hagués demanat Blu-Ray en comptes de DVD, quin hauria estat el format de codificació més adient?
 
@@ -267,18 +285,15 @@ Per a Blu-ray[^bluray] els arxius haurien de ser M2TS, la extensió per definir 
 
 [^bluray]: Blu-ray - Wikipedia - https://en.wikipedia.org/wiki/Blu-ray
 
-## 3.2. quin dels dos filtres creus que seria més adequat si el teu clip fos de 30 fps?
+## 3.2 quin dels dos filtres creus que seria més adequat si el teu clip fos de 30 fps?
 
 Un filtre manté tots els fotogrames però reajusta el segon del nostre video a els 25fps que requereix la codificació. Això generá una relentització del material de video i una major longitud. Si el nostre material no té per exemple audio, no hauria de ser massa problema, encara que si tenim audio al nostre material el que generà serà un pitchdown que pot arrivar a ser molest. L'altre filtre el que generará serà un retallada de frames per adaptarlo al 25fps, sense fer un canvi en la durada del video, però perdent segurament certa fluidesa dels movimients. En el meu cas, utilitzaré el segon filtre per mantenir la mateixa durada del video original.
 
-## 3.3.0. Vídeo codificat per DVD
+## 3.3.0 Vídeo codificat per DVD
 
 [Download](./video/pac2-dvd.mpg)
-<center>
-<video src="./video/pac2-dvd.mpg" controls height="480" style="transform:rotate(-90deg)"></video>
-</center>
 
-## 3.3: Quin és el factor de compressió aconseguit amb el nou fitxer pac2_dvd respecte al clip fictici no comprimit de la mateixa durada i definició calculat a l'apartat 2.1? Compara’l al resultant a l'apartat 2.3. 
+## 3.3 Quin és el factor de compressió aconseguit amb el nou fitxer pac2_dvd respecte al clip fictici no comprimit de la mateixa durada i definició calculat a l'apartat 2.1? Compara’l al resultant a l'apartat 2.3. 
 
 El fitxer original asset-2.raw (original fictici) té una mida de 1863 MiB
 
@@ -286,25 +301,28 @@ El fitxer pac2_dvd.mpg té una mida de 18.8 MiB
 
 El factor de compressió de 99:1.
 
-La raó per una banda es que hem canviat la mida del frame a la meitat, hem reduit el FPS i está comprimit. Encara que si el cambien de resolució i matenim la mateixa mida de frame la compressió seria inferior que amb H264AVC com tenim en l'apatat anterior.
+La raó per una banda es que hem canviat la mida del frame a la meitat, hem reduit el FPS i està comprimit. Encara que si el canvien de resolució i mantenim la mateixa mida de frame la compressió seria inferior que amb H264AVC com tenim en l'apartat anterior.
 
-## 3.4: Quins valors hem de posar en els camps Nombre de fotogrames B i Mida del GOP per obtenir aquest format de GOP (M=3 i N=6)?
+## 3.4 Quins valors hem de posar en els camps Nombre de fotogrames B i Mida del GOP per obtenir aquest format de GOP (M=3 i N=6)?
 
 En la configuració actual teniem 2 i 18 i el resultat era M=3,N=18, per tant, els valors seràn M=3,N=6 hauriem d'utilitzar serán 2 i 6.
 
-## 3.5: Quin factor de compressió obtenim? Per què?
+[Download](./video/pac2_dvd_m3_n6.mpg)
+
+## 3.5 Quin factor de compressió obtenim? Per què?
 
 La mida del nou fitxer es de 19MiB.
 
 El factor de compressió seria de 98:1, inferior a l'anterior perquè en aquest nou fitxer hem codificat amb més I-FRM que en laterior, i per tant, matenim més frame complets.
 
+Si repetim el procès amb GOP diferents, per exemple, M=2 N=6, el fitxer ocupa menys, és a dir, té un factor de compressió major.
 
 
-# Exercici 4: codificació Blu Ray i codificació 4K
+# Codificació Blu Ray i codificació 4K
 
-## 4.1: Què significa HEVC? Quines novetats incorpora H.265/HEVC respecte a l'anterior H.264/MPEG-4 AVC? Consulta Internet per trobar aquestes informacions.
+## 4.1 Què significa HEVC? Quines novetats incorpora H.265/HEVC respecte a l'anterior H.264/MPEG-4 AVC? Consulta Internet per trobar aquestes informacions.
 
-HEVC significa High Efficiency Video Coding.
+**HEVC** significa **High Efficiency Video Coding**.
 
 H265/HEVC[^h265] torna a alguns valors de l'antic MPEG-2 (nomes frames I,B,P) i amplia les funcionalitats de H264/MPEG-4 AVC com la predicció intraframe, la transformació, estimació de movimient, ... en blocs de pixels de 32x32 o inclús 64x64.
 
@@ -312,7 +330,7 @@ H265/HEVC[^h265] torna a alguns valors de l'antic MPEG-2 (nomes frames I,B,P) i 
 
 [^h265]: H.265 - Wikipedia - https://es.wikipedia.org/wiki/H.265
 
-## 4.2: Quins són els nivells i els perfils d'H.265/HEVC? Compara'ls amb els de H.264/MPEG-4 AVC
+## 4.2 Quins són els nivells i els perfils d'H.265/HEVC? Compara'ls amb els de H.264/MPEG-4 AVC
 
 Els nivells són: 1, 2, 2.1, 3, 3.1, 4, 4.1, 5, 5.1, 5.2, 6, 6.1, 6.2. Quan més gran, més qualitat. El nivell 6.2 resolucions fins a 8.192×4.320@120,0
 
@@ -322,17 +340,19 @@ Els perfils són: Main, Main 10, Main 12, Main 4:2:2 10, Main 4:2:2 12, Main 4:4
 
 En H264 tenim Original High, High 10, High 4:2:2, High 4:4:4 
 
-## 4.3: On s'indica el nivell de codificació en aquesta finestra?
+## 4.3 On s'indica el nivell de codificació en aquesta finestra?
 
-A la part inferior tenim un "scroll" per seleccionar el nivell de la codificació (major a menor qualitat, menor a major qualitat).
+A la part inferior tenim un "scroll" per seleccionar el nivell de la codificació (major a menor qualitat, menor a major qualitat). Aquest mateix _scroll_ es pot utilitzar per indicar diversos bitrates i així reduir o millor la qualitat de la imatge.
 
-## 4.4: Quins perfils poden ser triats en Avidemux per a H.264 i en H.265?
+## 4.4 Quins perfils poden ser triats en Avidemux per a H.264 i en H.265?
 
 A H.265 tenim els perfils: main, main10 i mainstillpicture.
 
 A H.264 tenim : baseline, main, high, high10, high422, high444
 
-## 4.5: Calcula el factor de compressió aconseguit respecte el fitxer asset-02.
+## 4.5 Calcula el factor de compressió aconseguit respecte el fitxer asset-02.
+
+[Download](./video/asset-02-hevc-80.mkv)
 
 Tenim el fitxer original mp4 en H264 amb un Bitrate 8907 kb/s (Comprobat utilitzant MediaInfo)
 
@@ -342,15 +362,17 @@ La mida del nou fitxer és 20.7 MiB front als 26.5 MiB de la versió en H264.
 
 El factor de compressió és de 1.28:1 front al H264.
 
-## 4.6: Calcula també el factor de compressió respecte a un hipotètic clip de la mateixa durada i definició
+## 4.6 Calcula també el factor de compressió respecte a un hipotètic clip de la mateixa durada i definició
 
 El fitxer fictici tindria una mida de 1863 MB
 
 El factor de conversió seria de 90:1
 
-## 4.7: Calcula una altra vegada el factor de compressió en tots dos casos. Hi ha hagut una variació important de compressió entre els dos clips generats? I de qualitat visual? Per què creus que ha estat així?
+## 4.7 Calcula una altra vegada el factor de compressió en tots dos casos. Hi ha hagut una variació important de compressió entre els dos clips generats? I de qualitat visual? Per què creus que ha estat així?
 
-Realitzem una nova coficació al 50% del bitrate original, és a dir, 4453 kbs
+[Download](./video/asset-02-hevc-50.mkv)
+
+Realitzem una nova codificació al 50% del bitrate original, és a dir, 4453 kbs
 
 La mida final del clip en H265 és 13.1 MiB
 
@@ -358,17 +380,27 @@ El seu factor de compressió respecte al original és de 2:1
 
 El seu factor de compressió respecte al fictici sense comprimir és de 142:1 
 
-Aquest nou clip s'ha reduit a la meitat i la perdua de qualitat, en el cas del meu clip, no és massa apreciable però si que hi ha una perdue de densitat de color i una mica més de pixelació en els foscos. He generat un clip reduit al 10% (890kbps) del bitrate original per a forçar aquest tipus de visualització.
+Aquest nou clip s'ha reduït a la meitat i la pèrdua de qualitat, en el cas del meu clip, no és massa apreciable però si que hi ha una pèrdues de densitat de color i una mica més de pixelació en els foscos. He generat un clip reduït al 10% (890kbps) del bitrate original per a forçar aquest tipus de visualització.
 
-## 4.8: Quin efecte visual produeix la pèrdua de llibertat d'elecció de la seva mesura? I a la compressió del fitxer? Per què?
+[Download](./video/asset-02-hevc-10.mkv)
+
+
+## 4.8 Quin efecte visual produeix la pèrdua de llibertat d'elecció de la seva mesura? I a la compressió del fitxer? Per què?
 
 Realitzem els canvis al GOP (30) mantenint l'última tasa de bits.
 
+[Download](./video/asset-02-hevc-50-gop-30.mkv)
+
+
+
 La mida del fitxer es quasi la mateixa, una mica menys, però no canvia.
 
-La qualitat del video, hi ha com una sensació de movilitat més artificial, o com més forçada en el moviment, però realment, no es massa apreciable en el meu clip.
+La qualitat del vídeo, hi ha com una sensació de mobilitat més artificial, o com més forçada en el moviment, però realment, no es massa apreciable en el meu clip.
 
-## 4.9: Comparant els tres casos, com afecta a la qualitat visual la variació del GOP? I a la compressió del fitxer? Per què?
+## 4.9 Comparant els tres casos, com afecta a la qualitat visual la variació del GOP? I a la compressió del fitxer? Per què?
+
+[Download](./video/asset-02-hevc-50-gop-10.mkv)
+
 
 El canvi en la mida del fitxer segueix sent molt baix, no hi ha massa variació, segeurament per el continu movimient de càmera la codificacio dinàmica del GOP deu ser molt similar a la forçada en aquests dos últims casos. La qualitat del vídeo no trobo gaires canvis.
 
@@ -376,35 +408,37 @@ Fent un nou clip a uns valors de GOP a 200, i comparant amb el de GOP=10 és veu
 
 
 
-# Exercici 5: Codificació de vídeo mitjançant un CDN
+# Codificació de vídeo mitjançant un CDN
 
-Com hem vist a l'anterior mòdul, analitzant els diversos proveidors de serveis al Cloud, i en més detall, el funcionament de Google Cloud API Strem, podem emetre un stream de video en HLS o DASH d'una manera força sencilla, aprofitant la distribució de la xarxa de Google Cloud.
+Com hem vist a l'anterior mòdul, analitzant els diversos proveïdors de serveis al Cloud, i en més detall, el funcionament de Google Cloud API Stream, podem emetre un stream de vídeo d'una manera força senzilla, aprofitant la distribució de la xarxa de Google Cloud.
 
 En aquest apartat, per parlar dels sistemes de Media Stream, estudiaré el servei de Cloudflare anomenat Cloudflare Stream[^cstream].
 
 [^cstream]: CloudFlare Stream - https://www.cloudflare.com/es-es/products/cloudflare-stream/
 
-Cloudflare és una empresa d'estats units que vas ser molt popular als seus origens per oferir un servei de DNS distribuït amb un _proxy reverse_ molt potent i un sistema de mitigació de DDOS. També, a nivell d'usuari és gestora d'un dels servidors de DNSs públics més utilitzat a internet amb l'adreça _1.1.1.1_.
+Cloudflare és una empresa d'estats units que vas ser molt popular als seus orígens per oferir un servei de DNS distribuït amb un _proxy reverse_ molt potent i un sistema de mitigació de DDOS. També, a nivell d'usuari és gestora d'un dels servidors de DNSs públics més utilitzat a internet amb l'adreça _1.1.1.1_.
 
-Si hem parlat a l'anterior mòdul dels diversos models de serveis al cloud, Cloudflare s'especialitza en el NaaS (Xarxa com a Servei), on podem identificar per exemple el seu producte de gestió de xarxes privades anomenat Cloudfare One, que incorpoa el servei propi de Zero Trust per securitzar la xarxa privada. A més, hi ha gran quantitat de serveis vinculats a firewalls en xarxes virtuals (Magic Firewall), mitigadors de DDOS (Spectrum), ....
+![CloudFlare - Definició del perímetro - https://www.cloudflare.com/es-es/what-is-cloudflare/](https://www.cloudflare.com/static/970a048b1b41010929d10adb0f2e68b7/BDES-1303_New_Cloudflare_Platform_Graphic_esES.svg)
 
-Cloudflare Stream ens ofereix tots els serveis que es demanen per a un sistema Media Stream al cloud: Emmagatzemar arxius multimèdia, codificar i publicar arxius en viu o sota demanda, sense mantenir la infraestructura.
+Si hem parlat a l'anterior mòdul dels diversos models de serveis al cloud, Cloudflare s'especialitza en el NaaS (Xarxa com a Servei), on podem identificar per exemple el seu producte de gestió de xarxes privades anomenat Cloudfare One, que incorpora el servei propi de Zero Trust per securitzar la xarxa privada. A més, hi ha gran quantitat de serveis vinculats a firewalls en xarxes virtuals (Magic Firewall), mitigadors de DDOS (Spectrum), ....
 
-El procés de publicació i les accions es realitzen via una API molt similar a la que hem vist a l'anterior pràctica amb Google Cloud. Es penja el material via una comanda POST amb els tokens oportuns per autentificació, es valida la seva pujada i recodificació i ja es posible incorporar amb un iframe el player que ens ofereix Cloudflare [^firststeps].
+Cloudflare Stream ens ofereix tots els serveis que es demanen per a un sistema Media Stream al cloud: Emmagatzemar arxius multimèdia, codificar i publicar arxius en viu o sota demanda, .. i tot, sense mantenir la infraestructura.
+
+El procés de publicació i les accions es realitzen via una API molt similar a la que hem vist a l'anterior pràctica amb Google Cloud. Es penja el material via una comanda POST amb els tokens oportuns per autentificació, es valida la seva pujada i recodificació i ja es possible incorporar amb un iframe el player que ens ofereix Cloudflare [^firststeps].
 
 [^firststeps]: Cloudflare Docs - Get started with Cloudflare Stream - https://developers.cloudflare.com/stream/get-started/
 
-En el cas de voler fer una retransmisió[^firststream] en directe (utilizant RTMP), es crea el mountpoint via la API de Cloudflare i s'emet contra el punt de muntatge quan el sistema ja està disponible. De la mateixa manera, s'incrusta el player al nostre web. A més, ens permet també enregistrar l'event per tornar-lo a emetre en mode replay. En aquest cas, Cloudflare Stream emet amb un bitrate adaptatiu (ABR) per oferir al client la qualitat més adaptada al seu ample de banda. 
+En el cas de voler fer una retransmissió[^firststream] en directe (utilitzant RTMP), es crea el mountpoint via la API de Cloudflare i s'emet contra el punt de muntatge quan el sistema ja està disponible. De la mateixa manera, s'incrusta el player al nostre web. A més, ens permet també enregistrar l'event per tornar-lo a emetre en mode replay. En aquest cas, Cloudflare Stream emet amb un bitrate adaptatiu (ABR) per oferir al client la qualitat més adaptada al seu ample de banda. 
 
-![Cloudflare Live Stream](https://developers.cloudflare.com/assets/live-stream-workflow_hucb4ae18dfe5885708a239a3b1286e1b5_19867_691x397_resize_q75_box_3-7500ef1b.png){ width=50% }
+![Cloudflare Live Stream](https://developers.cloudflare.com/assets/live-stream-workflow_hucb4ae18dfe5885708a239a3b1286e1b5_19867_691x397_resize_q75_box_3-7500ef1b.png)
 
 [^firststream]: Cloudflare Docs - Stream Live Video - https://developers.cloudflare.com/stream/stream-live/
 
-A més de la posibilitat de publicar i emetre material audiovisual, CloudFlare Stream ens ofereix la opció d'edició en directe utilitzant la API per afegir per exemple titulació, marca d'aigua, modificar les funcions del player o retallar el material. Podem també habilitar webooks per executar events cap a serveis externs o gestionar usuaris o els diversos materials. Tot això via la API o el panell de gestió que ofereix CloudFlare [Stream Dashboard].
+A més de la possibilitat de publicar i emetre material audiovisual, CloudFlare Stream ens ofereix la opció d'edició en directe utilitzant la API per afegir per exemple titulació, marca d'aigua, modificar les funcions del player o retallar el material. Podem també habilitar webhooks per executar events cap a serveis externs o gestionar usuaris o els diversos materials. Tot això via la API o el panell de gestió que ofereix CloudFlare [Stream Dashboard].
 
-I finalment, tota la activitat està registrada i és possible analitzar els accesos via ubicacions, plataformes d'accés dels usuaris o analitzar en quin moment els nostres materials han estat més visualitzats o no. 
+I finalment, tota la activitat està registrada i és possible analitzar els accessos via ubicacions, plataformes d'accés dels usuaris o analitzar en quin moment els nostres materials han estat més visualitzats o no. 
 
-Com a novetat, que no he vist a altres proveïdors, és la possibilitat d'emetre i reproduir video utilizant el protocol WebRTC via browser a l'estil les plataformes de videoconferències estil Jitsi. 
+Com a novetat, que no he vist a altres proveïdors, és la possibilitat d'emetre i reproduir video utilitzant el protocol WebRTC via browser a l'estil les plataformes de videoconferències estil Jitsi. 
 
 Els preus de Cloudflare Stream:
 
