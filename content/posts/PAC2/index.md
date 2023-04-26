@@ -1,5 +1,6 @@
 ---
-title: Practica 2
+title: Prova d'Avaluació Continuada 2 (PEC2)
+summary: Resultat de la pràctica
 author: 
  - Luca Rullo
 colorlinks: true
@@ -8,10 +9,12 @@ toc: true
 toc-depth: 1
 geometry:
 - margin=1in
-
+categories:
+- Plataformes de publicació i distribució
+date: "2023-04-26"
 ---
 
-\newpage
+
 # Exercici 1: Familiarització amb l'aplicació Avidemux. Contingut estàtic
 
 [Descarrega Video](./video/asset-01.mp4)
@@ -156,7 +159,7 @@ Altres coses, com les que hem revisat anteriorment sobre el GOP, estas detallade
 
 [^4cc]: 4CC - Wikipedia - https://en.wikipedia.org/wiki/FourCC
 
-\newpage
+
 # 2. Contingut dinàmic
 
 <center>
@@ -251,7 +254,7 @@ Codec configuration box                  : avcC
 
 Destaquem en aquest de video la pujada de Bitrate i la variació del framerate, segurament causats per el moviment de càmera i els efectes que causa un canvi tan constant frame a frame. Els fotogrames identificats com a P-FRM han de generar moltes més dades per poder definir els seus canvis de l'anterior I-FRM, pero tant, finalment tenen una mida més gran, el que generar una Bitrate més gran, a més de tenir un factor de compressió menor que en el material anterior.
 
-\newpage
+
 # 3. Codificació en baixa qualitat
 
 ## 3.1 Quin format de codificació de vídeo accepten els DVD? Si el client hagués demanat Blu-Ray en comptes de DVD, quin hauria estat el format de codificació més adient?
@@ -296,7 +299,7 @@ La mida del nou fitxer es de 19MiB.
 El factor de compressió seria de 98:1, inferior a l'anterior perquè en aquest nou fitxer hem codificat amb més I-FRM que en laterior, i per tant, matenim més frame complets.
 
 
-\newpage
+
 # Exercici 4: codificació Blu Ray i codificació 4K
 
 ## 4.1: Què significa HEVC? Quines novetats incorpora H.265/HEVC respecte a l'anterior H.264/MPEG-4 AVC? Consulta Internet per trobar aquestes informacions.
@@ -371,7 +374,7 @@ El canvi en la mida del fitxer segueix sent molt baix, no hi ha massa variació,
 
 Fent un nou clip a uns valors de GOP a 200, i comparant amb el de GOP=10 és veu una millora en la fluïdesa del moviment. Pero encara així, no és massa diferencial el canvi.
 
-\newpage
+
 
 # Exercici 5: Codificació de vídeo mitjançant un CDN
 
