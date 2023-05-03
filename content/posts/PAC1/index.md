@@ -13,6 +13,7 @@ colorlinks: true
 fontsize: 10pt
 geometry:
 - margin=0.8in
+draft: true
 ---
 
 # 0. Instal·lació d'eines per a la gestió de serveis al núvol.
