@@ -206,7 +206,7 @@ Per fer unes proves, he desactivat la transcodificació i faig la emissió sense
 
 ![Estadístiques VLC](img/vlc_stats.png)
 
-# Emissió d'Streaming amb IBM Streaming Service
+# IBM Streaming Service: Serveis, productes i exemple d'ús
 
 A la primera pràctica vaig realitzar un anàlisis de la utilització de Google Cloud per fer una emissió amb tot el procès de generació d'usuaries i construcció de canals. A la segona pràctica vaig revisar l'alternativa de Cloudflare per fer streaming. En aquest darrera pràctica analitzarem l'opció d'IBM per fer streaming.
 
