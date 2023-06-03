@@ -249,7 +249,7 @@ Al Dashboard podem personalitzar-lo: Canviar la imatge, activar l'auto-enregistr
 
 En la secció de continguts, ens dona l'opció de crear un playlist pujant vídeos, decidir que es veu quan estem off-air (últim vídeo per defecte, vídeos seleccionats, ...), podem crear esdeveniments que es visualitzant a la nostra pàgina del canal a la pestanya pròximes emissions, ... En el nostre cas, volem mirar com podem fer un streaming contra el nostre canal, per tant, anirem a l'opció del menú _Broadcasting tools and apps_.
 
-Per fer-ho, ens proposta algunes eines com Streamlabs[^slabs], Larix Brodcaster[^larix], Broadcast Me[^bme] o eines de vídeo conferència com WebEX, Zoom, Microsoft Teams, BlueJeans, o aplicacions desktop com Streamlabs, OBS Studio[^obs], Wirecast o inclús, utilitzar les APIs dels serveis de StreamLabs, Streamaxia o Larix. 
+Per fer-ho, ens proposta algunes eines com Streamlabs[^slabs], Larix Brodcaster[^larix], Broadcast Me[^bme] o eines de vídeo conferència com WebEX, Zoom, Microsoft Teams, BlueJeans, o aplicacions desktop com Streamlabs, OBS Studio[^obs], Wirecast[^wirecast] o inclús, utilitzar les APIs dels serveis de StreamLabs, Streamaxia o Larix. 
 
 [^slabs]: https://streamlabs.com/
 [^larix]: https://softvelum.com/larix/
